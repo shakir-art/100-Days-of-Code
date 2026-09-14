@@ -1,6 +1,15 @@
+/* Q51: Write a program to print a right-aligned descending number pattern. */
 #include <stdio.h>
 
 int main() {
-    printf("Day 26 - Problem 51\\n");
+    for (int i = 5; i >= 1; i--) {
+        for (int s = 1; s < i; s++) {
+            printf(" ");
+        }
+        for (int j = i; j <= 5; j++) {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
     return 0;
 }
