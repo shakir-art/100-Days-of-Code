@@ -1,35 +1,32 @@
-/* Q70: Rotate an array to the right by k positions. */
+/* Q69: Find the second largest element in an array. */
 #include <stdio.h>
 
-// Helper function to reverse a section of the array
-void reverse(int arr[], int start, int end) {
-    while (start < end) {
-        int temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-        start++;
-        end--;
-    }
-}
-
 int main() {
-    int n, k;
-    if (scanf("%d", &n) == 1 && n > 0) {
+    int n;
+    if (scanf("%d", &n) == 1 && n >= 2) {
         int arr[n];
         for (int i = 0; i < n; i++) scanf("%d", &arr[i]);
         
-        if (scanf("%d", &k) == 1) {
-            k = k % n; // Avoid unnecessary full rotations
-            if (k < 0) k += n; 
-            
-            // O(N) time and O(1) space optimal rotation algorithm
-            reverse(arr, 0, n - 1);       // Reverse whole array
-            reverse(arr, 0, k - 1);       // Reverse first k elements
-            reverse(arr, k, n - 1);       // Reverse remaining elements
-            
-            for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-            printf("\n");
+        int max1 = arr[0];
+        // Initialize to minimum possible integer value
+        int max2 = -2147483648; 
+        
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > max1) {
+                max2 = max1;
+                max1 = arr[i];
+            } else if (arr[i] > max2 && arr[i] < max1) {
+                max2 = arr[i];
+            }
         }
+        
+        if (max2 == -2147483648) {
+            printf("No second largest element exists (all elements may be equal).\n");
+        } else {
+            printf("Second largest = %d\n", max2);
+        }
+    } else {
+        printf("Array must have at least two elements.\n");
     }
     return 0;
 }
