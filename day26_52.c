@@ -1,6 +1,16 @@
+/* Q52: Write a program to print a hollow 5x5 square pattern. */
 #include <stdio.h>
 
 int main() {
-    printf("Day 26 - Problem 52\\n");
+    for (int i = 1; i <= 5; i++) {
+        for (int j = 1; j <= 5; j++) {
+            if (i == 1 || i == 5 || j == 1 || j == 5) {
+                printf("*");
+            } else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
     return 0;
 }
